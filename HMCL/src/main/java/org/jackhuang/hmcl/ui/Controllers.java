@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2021  huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -53,14 +53,12 @@ import org.jackhuang.hmcl.ui.decorator.Decorator;
 import org.jackhuang.hmcl.ui.download.DownloadPage;
 import org.jackhuang.hmcl.ui.main.LauncherSettingsPage;
 import org.jackhuang.hmcl.ui.main.RootPage;
-import org.jackhuang.hmcl.ui.terracotta.TerracottaPage;
 import org.jackhuang.hmcl.ui.instances.GameListPage;
 import org.jackhuang.hmcl.ui.instances.GameInstancePage;
 import org.jackhuang.hmcl.ui.instances.Instances;
 import org.jackhuang.hmcl.upgrade.UpdateChecker;
 import org.jackhuang.hmcl.util.*;
 import org.jackhuang.hmcl.util.i18n.I18n;
-import org.jackhuang.hmcl.util.i18n.SupportedLocale;
 import org.jackhuang.hmcl.util.io.FileUtils;
 import org.jackhuang.hmcl.util.platform.Architecture;
 import org.jackhuang.hmcl.util.platform.OperatingSystem;
@@ -71,7 +69,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
@@ -87,7 +84,6 @@ public final class Controllers {
     public static final String JAVA_VERSION_TIP = "javaVersion";
     public static final String JAVA_INTERPRETED_MODE_TIP = "javaInterpretedMode";
     public static final String SOFTWARE_RENDERING = "softwareRendering";
-    public static final String APRIL_FOOLS = "aprilFools";
 
     private static GameInstancePage gameInstancePage;
     private static Lazy<GameListPage> gameListPage = new Lazy<>(GameListPage::new);
@@ -104,7 +100,6 @@ public final class Controllers {
         return accountListPage;
     });
     private static LauncherSettingsPage settingsPage;
-    private static Lazy<TerracottaPage> terracottaPage = new Lazy<>(TerracottaPage::new);
 
     private Controllers() {
     }
@@ -189,11 +184,6 @@ public final class Controllers {
         }
     }
 
-    @FXThread
-    public static Node getTerracottaPage() {
-        return terracottaPage.get();
-    }
-
     /// Returns the initialized main-window decorator.
     ///
     /// @return the application-wide main-window decorator
@@ -215,7 +205,7 @@ public final class Controllers {
     private static void configureMainStage(Stage stage) {
         stage.setOnCloseRequest(event -> Launcher.stopApplication());
         FXUtils.setIcon(stage);
-        stage.setTitle(Metadata.FULL_TITLE);
+        stage.setTitle(Metadata.FULL_NAME);
         WindowsNativeUtils.installWindowsAppUserModelRelaunchProperties(stage);
     }
 
@@ -337,53 +327,6 @@ public final class Controllers {
             noButton.setOnAction(e -> javafx.application.Platform.exit());
             agreementPane.setActions(agreementLink, yesButton, noButton);
             Controllers.dialog(agreementPane);
-        }
-
-        aprilFools:
-        if (AprilFools.isEnabled()) {
-            int currentYear = LocalDate.now().getYear();
-            if (state().getShownTips().get(APRIL_FOOLS) instanceof Number year && year.intValue() >= currentYear)
-                break aprilFools;
-
-            if (!I18n.getLocale().getLocale().getLanguage().equals("zh"))
-                break aprilFools;
-
-            SupportedLocale lzh = SupportedLocale.getSupportedLocales().stream()
-                    .filter(locale -> "lzh".equals(locale.getName()))
-                    .findFirst().orElse(null);
-
-            if (lzh == null) {
-                LOG.warning("No supported locale found for lzh");
-                break aprilFools;
-            }
-
-            Runnable updateShowTips = () -> state().getShownTips().put(APRIL_FOOLS, currentYear);
-
-            Controllers.confirmWithCountdown(i18n("launcher.april_fools.switch_lzh"), null, 10,
-                    MessageType.QUESTION, () -> {
-                        Controllers.confirm(i18n("launcher.april_fools.switch_lzh.confirm"), null, MessageType.QUESTION, () -> {
-                            LOG.info("Switching locale to " + lzh);
-
-                            updateShowTips.run();
-                            settings().languageProperty().set(lzh);
-
-                            Controllers.onApplicationStop();
-
-                            try {
-                                FileSaver.waitForAllSaves();
-                            } catch (InterruptedException ignored) {
-                                // Ignore
-                            }
-
-                            try {
-                                Restarter.restartSelf();
-                            } catch (IOException e) {
-                                LOG.warning("Failed to restart self", e);
-                            }
-
-                            Platform.exit();
-                        }, updateShowTips);
-                    }, updateShowTips);
         }
 
         tryInstallBundledModpack(GameDirectoryManager.getSelectedRepository());
@@ -597,10 +540,6 @@ public final class Controllers {
     public static void onHyperlinkAction(String href) {
         if (href.startsWith("hmcl://")) {
             switch (href) {
-                case "hmcl://settings/feedback":
-                    Controllers.getSettingsPage().showFeedback();
-                    Controllers.navigate(Controllers.getSettingsPage());
-                    break;
                 case "hmcl://game/launch":
                     var repository = GameDirectoryManager.getSelectedRepository();
                     Instances.launch(repository.getSelectedInstance(), LauncherHelper::setKeep);
@@ -642,7 +581,6 @@ public final class Controllers {
         downloadPage = null;
         accountListPage = null;
         settingsPage = null;
-        terracottaPage = null;
         decorator = null;
 
         FXUtils.shutdown();

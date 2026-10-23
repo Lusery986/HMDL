@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2021  huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -64,8 +64,8 @@ public class YggdrasilServer extends HttpServer {
                         "localhost"
                 )),
                 pair("meta", mapOf(
-                        pair("serverName", "HMCL"),
-                        pair("implementationName", "HMCL"),
+                        pair("serverName", "HMDL"),
+                        pair("implementationName", "HMDL"),
                         pair("implementationVersion", "1.0"),
                         pair("feature.non_email_login", true)
                 ))

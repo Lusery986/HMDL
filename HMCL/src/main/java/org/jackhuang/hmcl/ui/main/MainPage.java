@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2021  huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -66,7 +66,6 @@ import org.jackhuang.hmcl.upgrade.RemoteVersion;
 import org.jackhuang.hmcl.upgrade.UpdateChecker;
 import org.jackhuang.hmcl.upgrade.UpdateHandler;
 import org.jackhuang.hmcl.util.*;
-import org.jackhuang.hmcl.util.i18n.I18n;
 import org.jackhuang.hmcl.util.javafx.BindingMapping;
 import org.jackhuang.hmcl.util.platform.OperatingSystem;
 import org.jackhuang.hmcl.util.platform.Platform;
@@ -118,11 +117,7 @@ public final class MainPage extends StackPane implements DecoratorPage {
         titleNode.setAlignment(Pos.CENTER_LEFT);
 
         ImageView titleIcon = new ImageView(FXUtils.newBuiltinImage("/assets/img/icon-title.png"));
-        Label titleLabel = new Label(Metadata.FULL_TITLE);
-        if (I18n.isUpsideDown()) {
-            titleIcon.setRotate(180);
-            titleLabel.setRotate(180);
-        }
+        Label titleLabel = new Label(Metadata.FULL_NAME);
         titleLabel.getStyleClass().add("jfx-decorator-title");
         titleLabel.textFillProperty().bind(Themes.titleFillProperty());
         titleNode.getChildren().setAll(titleIcon, titleLabel);

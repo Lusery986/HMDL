@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2026 huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -66,7 +66,6 @@ public final class UserSettingsTest {
             assertEquals(UserSettings.CURRENT_SCHEMA, settings.getSchema());
             assertEquals(UserState.CURRENT_SCHEMA, state.getSchema());
             assertEquals(1, state.agreementVersionProperty().get());
-            assertEquals(2, state.terracottaAgreementVersionProperty().get());
             assertEquals(3, state.platformPromptVersionProperty().get());
             assertEquals(7, settings.logRetentionProperty().get());
             assertTrue(settings.enableOfflineAccountProperty().get());

@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2021  huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,6 @@ import org.jackhuang.hmcl.auth.offline.OfflineAccount;
 import org.jackhuang.hmcl.auth.offline.OfflineAccountFactory;
 import org.jackhuang.hmcl.auth.yggdrasil.RemoteAuthenticationException;
 import org.jackhuang.hmcl.game.OAuthServer;
-import org.jackhuang.hmcl.task.Schedulers;
 import org.jackhuang.hmcl.util.gson.JsonUtils;
 import org.jackhuang.hmcl.util.io.JarUtils;
 import org.jackhuang.hmcl.util.skin.InvalidSkinException;
@@ -409,28 +408,9 @@ public final class Accounts {
 
         getAuthlibInjectorServers().addListener(onInvalidating(Accounts::removeDanglingAuthlibInjectorAccounts));
 
-        if (selected != null) {
-            Account finalSelected = selected;
-            Schedulers.io().execute(() -> {
-                try {
-                    finalSelected.logIn();
-                } catch (Throwable e) {
-                    LOG.warning("Failed to log " + finalSelected + " in", e);
-                }
-            });
-        }
-
-        for (AuthlibInjectorServer server : getAuthlibInjectorServers()) {
-            if (selected instanceof AuthlibInjectorAccount && ((AuthlibInjectorAccount) selected).getServer() == server)
-                continue;
-            Schedulers.io().execute(() -> {
-                try {
-                    server.fetchMetadataResponse();
-                } catch (IOException e) {
-                    LOG.warning("Failed to fetch authlib-injector server metadata: " + server, e);
-                }
-            });
-        }
+        // Do not contact account or authlib-injector servers during startup. Account
+        // authentication and server metadata requests are deferred until the user
+        // explicitly starts a login or another operation that needs them.
     }
 
     public static ObservableList<Account> getAccounts() {

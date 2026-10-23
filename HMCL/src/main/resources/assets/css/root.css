@@ -1,5 +1,5 @@
 /**
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2020  huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -347,10 +347,6 @@
 .two-line-item-second-large > HBox > .subtitle {
     -fx-text-fill: -monet-on-surface;
     -fx-font-size: 15px;
-}
-
-.terracotta-hint Text {
-    -fx-fill: -monet-on-surface;
 }
 
 .game-crash-window {

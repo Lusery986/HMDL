@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2026 huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import org.glavo.monetfx.ColorRole;
 import org.glavo.monetfx.ColorScheme;
-import org.jackhuang.hmcl.Metadata;
 import org.jackhuang.hmcl.theme.Themes;
 import org.jackhuang.hmcl.ui.FXUtils;
 import org.jackhuang.hmcl.ui.SVG;
@@ -184,7 +183,7 @@ final class MainWindowPane extends StackPane {
         return backgroundNode;
     }
 
-    /// Creates the help, minimize, and application-close buttons.
+    /// Creates the minimize and application-close buttons.
     ///
     /// @return a size-limited top-right button row
     private HBox createWindowButtons() {
@@ -192,13 +191,6 @@ final class MainWindowPane extends StackPane {
         buttons.setAlignment(Pos.TOP_RIGHT);
         decorator.capableDraggingWindow(buttons);
         buttons.setMaxSize(Region.USE_PREF_SIZE, 40);
-
-        JFXButton helpButton = new JFXButton();
-        helpButton.setFocusTraversable(false);
-        helpButton.setGraphic(SVG.HELP.createIcon(Themes.titleFillProperty()));
-        helpButton.getStyleClass().add("jfx-decorator-button");
-        helpButton.setOnAction(event -> FXUtils.openLink(Metadata.CONTACT_URL));
-        decorator.forbidDraggingWindow(helpButton);
 
         JFXButton minimizeButton = new JFXButton();
         minimizeButton.setFocusTraversable(false);
@@ -214,7 +206,7 @@ final class MainWindowPane extends StackPane {
         closeButton.setOnAction(event -> decorator.closeWindow());
         decorator.forbidDraggingWindow(closeButton);
 
-        buttons.getChildren().setAll(helpButton, minimizeButton, closeButton);
+        buttons.getChildren().setAll(minimizeButton, closeButton);
         return buttons;
     }
 

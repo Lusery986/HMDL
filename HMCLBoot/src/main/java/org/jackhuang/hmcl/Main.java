@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2025 huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -120,7 +120,7 @@ public final class Main {
             SwingUtils.initLookAndFeel();
             System.err.println("The jar path contains an exclamation mark: " + jarPath);
             // No Chinese translation because both Swing and JavaFX cannot render Chinese character properly when exclamation mark exists in the path.
-            SwingUtils.showErrorDialog("Exclamation mark(!) is not allowed in the path where HMCL is in.\n" + "The path is " + jarPath);
+            SwingUtils.showErrorDialog("Exclamation mark(!) is not allowed in the path where HMDL is in.\n" + "The path is " + jarPath);
             System.exit(1);
         }
     }

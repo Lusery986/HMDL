@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2020  huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -40,8 +40,6 @@ import org.jackhuang.hmcl.ui.construct.MessageDialogPane.MessageType;
 import org.jackhuang.hmcl.upgrade.*;
 import org.jackhuang.hmcl.util.Lang;
 import org.jackhuang.hmcl.util.StringUtils;
-import org.jackhuang.hmcl.util.i18n.I18n;
-import org.jackhuang.hmcl.util.i18n.SupportedLocale;
 import org.jackhuang.hmcl.util.io.FileUtils;
 import org.jackhuang.hmcl.util.io.IOUtils;
 import org.tukaani.xz.XZInputStream;
@@ -66,8 +64,10 @@ import static org.jackhuang.hmcl.util.i18n.I18n.i18n;
 import static org.jackhuang.hmcl.util.logging.Logger.LOG;
 
 public final class SettingsPage extends ScrollPane {
+    /// Kept as a field so the weak listeners registered on the update properties stay reachable.
+    /// Only assigned when [Metadata#UPDATE_CHECK_ENABLED] is enabled.
     @SuppressWarnings("FieldCanBeLocal")
-    private final InvalidationListener updateListener;
+    private InvalidationListener updateListener;
 
     public SettingsPage() {
         this.setFitToWidth(true);
@@ -79,7 +79,7 @@ public final class SettingsPage extends ScrollPane {
 
         {
             ComponentList updatePaneList = new ComponentList();
-            {
+            if (Metadata.UPDATE_CHECK_ENABLED) {
                 ObjectProperty<UpdateChannel> updateChannel;
                 {
 
@@ -168,33 +168,6 @@ public final class SettingsPage extends ScrollPane {
                 }
 
                 rootPane.getChildren().addAll(ComponentList.createComponentListTitle(i18n("update")), updatePaneList);
-            }
-
-            {
-                ComponentList languagePaneList = new ComponentList();
-
-                {
-                    var chooseLanguagePane = new LineSelectButton<SupportedLocale>();
-                    chooseLanguagePane.setTitle(i18n("settings.launcher.language"));
-                    chooseLanguagePane.setSubtitle(i18n("settings.take_effect_after_restart"));
-
-                    SupportedLocale currentLocale = I18n.getLocale();
-                    chooseLanguagePane.setNullSafeConverter(locale -> {
-                        if (locale.isDefault())
-                            return locale.getDisplayName(currentLocale);
-                        else if (locale.isSameLanguage(currentLocale))
-                            return locale.getDisplayName(locale);
-                        else
-                            return locale.getDisplayName(currentLocale) + " - " + locale.getDisplayName(locale);
-                    });
-                    chooseLanguagePane.setItems(SupportedLocale.getSupportedLocales());
-                    chooseLanguagePane.valueProperty().bindBidirectional(settings().languageProperty());
-
-                    languagePaneList.getContent().add(chooseLanguagePane);
-
-                }
-
-                rootPane.getChildren().addAll(ComponentList.createComponentListTitle(i18n("settings.launcher.language")), languagePaneList);
             }
 
             {

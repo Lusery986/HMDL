@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2026 huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -233,7 +233,7 @@ public abstract class CreateDeb extends DefaultTask {
                 Architecture: all
                 Installed-Size: %d
                 Maintainer: Glavo <zjx001202@gmail.com>
-                Description: Hello Minecraft! Launcher
+                Description: HMDL Launcher
                 Homepage: https://github.com/HMCL-dev/HMCL
                 """.formatted(getCurrentType().getPackageName(), getVersion().get(), Math.max(installedSize, 1)) + "\n";
     }
@@ -292,7 +292,7 @@ public abstract class CreateDeb extends DefaultTask {
                 [Desktop Entry]
                 Type=Application
                 Name=%s
-                Comment=Hello Minecraft! Launcher
+                Comment=HMDL Launcher
                 Exec=%s
                 Icon=%s
                 Terminal=false

@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2026 huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -119,15 +119,6 @@ public final class UserState extends ObservableSetting implements JsonSchemaSett
     /// Returns the accepted launcher agreement version property.
     public IntegerProperty agreementVersionProperty() {
         return agreementVersion;
-    }
-
-    /// The accepted Terracotta agreement version.
-    @SerializedName("terracottaAgreementVersion")
-    private final IntegerProperty terracottaAgreementVersion = new SimpleIntegerProperty();
-
-    /// Returns the accepted Terracotta agreement version property.
-    public IntegerProperty terracottaAgreementVersionProperty() {
-        return terracottaAgreementVersion;
     }
 
     /// The platform prompt version shown to the user.

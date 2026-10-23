@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2020  huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ public final class UpdateChecker {
     private static final BooleanBinding outdated = Bindings.createBooleanBinding(
             () -> {
                 RemoteVersion latest = latestVersion.get();
-                if (latest == null || isDevelopmentVersion(Metadata.VERSION)) {
+                if (!Metadata.UPDATE_CHECK_ENABLED || latest == null || isDevelopmentVersion(Metadata.VERSION)) {
                     return false;
                 } else if (latest.force()
                         || Metadata.isNightly()
@@ -58,6 +58,10 @@ public final class UpdateChecker {
     private static final ReadOnlyObjectWrapper<@Nullable Throwable> error = new ReadOnlyObjectWrapper<>();
 
     public static void init() {
+        if (!Metadata.UPDATE_CHECK_ENABLED) {
+            return;
+        }
+
         requestCheckUpdate(UpdateChannel.getChannel(), settings().acceptPreviewUpdateProperty().get());
     }
 
@@ -108,6 +112,10 @@ public final class UpdateChecker {
     }
 
     public static void requestCheckUpdate(UpdateChannel channel, boolean preview) {
+        if (!Metadata.UPDATE_CHECK_ENABLED) {
+            return;
+        }
+
         Platform.runLater(() -> {
             if (isCheckingUpdate())
                 return;

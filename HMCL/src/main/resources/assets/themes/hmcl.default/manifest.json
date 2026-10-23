@@ -14,14 +14,14 @@
     "lzh": "預設主題"
   },
   "description": {
-    "default": "HMCL Default",
-    "es": "HMCL Predeterminado",
-    "ja": "HMCL デフォルト",
-    "ru": "HMCL По умолчанию",
-    "uk": "HMCL За замовчуванням",
-    "zh-Hans": "HMCL 默认主题",
-    "zh-Hant": "HMCL 預設主題",
-    "lzh": "HMCL 預設主題"
+    "default": "HMDL Default",
+    "es": "HMDL Predeterminado",
+    "ja": "HMDL デフォルト",
+    "ru": "HMDL По умолчанию",
+    "uk": "HMDL За замовчуванням",
+    "zh-Hans": "HMDL 默认主题",
+    "zh-Hant": "HMDL 預設主題",
+    "lzh": "HMDL 預設主題"
   },
   "authors": [
     {

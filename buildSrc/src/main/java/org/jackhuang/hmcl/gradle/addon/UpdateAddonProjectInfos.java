@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2026 huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -88,7 +88,7 @@ public abstract class UpdateAddonProjectInfos extends DefaultTask {
         try (var writer = new CSVWriter(Files.newBufferedWriter(outputFile))) {
             writer.writeComment("""
                     
-                    Hello Minecraft! Launcher
+                    Hu Mai Diao! Launcher
                     Copyright (C) 2026 huangyuhui <huanghongxun2008@126.com> and contributors
                     
                     mcmod.cn

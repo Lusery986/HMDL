@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2021  huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ import static org.jackhuang.hmcl.util.logging.Logger.LOG;
  * @author huangyuhui
  */
 public final class NetworkUtils {
-    public static final String USER_AGENT = System.getProperty("http.agent", "HMCL");
+    public static final String USER_AGENT = System.getProperty("http.agent", "HMDL");
 
     public static final String PARAMETER_SEPARATOR = "&";
     public static final String NAME_VALUE_SEPARATOR = "=";

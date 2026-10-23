@@ -1,4 +1,4 @@
-# Hello Minecraft! Launcher Release Schedule
+# Hu Mai Diao! Launcher Release Schedule
 
 <!-- #BEGIN LANGUAGE_SWITCHER -->
 **English** | 中文 ([简体](ReleaseSchedule_zh_Hans.md), [繁體](ReleaseSchedule_zh_Hant.md))

@@ -1,16 +1,11 @@
-import org.jackhuang.hmcl.gradle.TerracottaConfigUpgradeTask
 import org.jackhuang.hmcl.gradle.addon.FormatJsonFile
 import org.jackhuang.hmcl.gradle.addon.UpdateAddonProjectInfos
 import org.jackhuang.hmcl.gradle.ci.GitHubActionUtils
 import org.jackhuang.hmcl.gradle.ci.JenkinsUtils
-import org.jackhuang.hmcl.gradle.l10n.CheckTranslations
-import org.jackhuang.hmcl.gradle.l10n.CreateLanguageList
-import org.jackhuang.hmcl.gradle.l10n.CreateLocaleNamesResourceBundle
-import org.jackhuang.hmcl.gradle.l10n.SyncTranslations
-import org.jackhuang.hmcl.gradle.l10n.UpsideDownTranslate
 import org.jackhuang.hmcl.gradle.pack.CreateDeb
 import org.jackhuang.hmcl.gradle.pack.ReleaseType
 import org.jackhuang.hmcl.gradle.utils.PropertiesUtils
+import org.gradle.api.tasks.bundling.AbstractArchiveTask
 import java.net.URI
 import java.nio.file.FileSystems
 import java.nio.file.Files
@@ -22,6 +17,12 @@ import java.util.zip.ZipFile
 
 plugins {
     alias(libs.plugins.shadow)
+}
+
+// Release artifacts are branded as HMDL; the Gradle project keeps its original name
+// so module paths and task names stay unchanged.
+tasks.withType<AbstractArchiveTask>().configureEach {
+    archiveBaseName.set("HMDL")
 }
 
 val projectConfig = PropertiesUtils.load(rootProject.file("config/project.properties").toPath())
@@ -238,25 +239,12 @@ tasks.shadowJar {
 
 tasks.processResources {
     dependsOn(createPropertiesFile)
-    dependsOn(upsideDownTranslate)
-    dependsOn(createLocaleNamesResourceBundle)
-    dependsOn(createLanguageList)
 
     into("assets/") {
         from(hmclPropertiesFile)
         from(embedResources)
     }
 
-    into("assets/lang") {
-        from(createLanguageList.map { it.outputFile })
-        from(upsideDownTranslate.map { it.outputFile })
-        from(createLocaleNamesResourceBundle.map { it.outputDirectory })
-    }
-
-    inputs.property("terracotta_version", libs.versions.terracotta)
-    doLast {
-        upgradeTerracottaConfig.get().checkValid()
-    }
 }
 
 fun artifactFile(ext: String) = jarPath.resolveSibling(jarPath.nameWithoutExtension + '.' + ext)
@@ -404,72 +392,6 @@ tasks.register<JavaExec>("run") {
         logger.quiet("HMCL_JAVA_HOME: {}", hmclJavaHome ?: System.getProperty("java.home"))
     }
 }
-
-// terracotta
-
-val upgradeTerracottaConfig = tasks.register<TerracottaConfigUpgradeTask>("upgradeTerracottaConfig") {
-    val destination = layout.projectDirectory.file("src/main/resources/assets/terracotta.json")
-    val source = layout.projectDirectory.file("terracotta-template.json");
-
-    classifiers.set(
-        listOf(
-            "windows-x86_64", "windows-arm64",
-            "macos-x86_64", "macos-arm64",
-            "linux-x86_64", "linux-arm64", "linux-loongarch64", "linux-riscv64",
-            "freebsd-x86_64"
-        )
-    )
-
-    version.set(libs.versions.terracotta)
-    downloadURL.set($$"https://github.com/burningtnt/Terracotta/releases/download/v${version}/terracotta-${version}-${classifier}-pkg.tar.gz")
-
-    templateFile.set(source)
-    outputFile.set(destination)
-}
-
-// Check Translations
-
-tasks.register<CheckTranslations>("checkTranslations") {
-    val dir = layout.projectDirectory.dir("src/main/resources/assets/lang")
-
-    englishFile.set(dir.file("I18N.properties"))
-    simplifiedChineseFile.set(dir.file("I18N_zh_Hans.properties"))
-    traditionalChineseFile.set(dir.file("I18N_zh_Hant.properties"))
-    classicalChineseFile.set(dir.file("I18N_lzh.properties"))
-}
-
-// l10n
-
-tasks.register<SyncTranslations>("syncTranslations") {
-    group = "localization"
-    description = "Synchronizes translation keys and blank lines with I18N.properties."
-
-    val dir = layout.projectDirectory.dir("src/main/resources/assets/lang")
-    sourceFile.set(dir.file("I18N.properties"))
-    translationFiles.from(fileTree(dir) { include("I18N_*.properties") })
-}
-
-val generatedDir = layout.buildDirectory.dir("generated")
-
-val upsideDownTranslate = tasks.register<UpsideDownTranslate>("upsideDownTranslate") {
-    inputFile.set(layout.projectDirectory.file("src/main/resources/assets/lang/I18N.properties"))
-    outputFile.set(generatedDir.map { it.file("generated/i18n/I18N_en_Qabs.properties") })
-}
-
-val createLanguageList = tasks.register<CreateLanguageList>("createLanguageList") {
-    resourceBundleDir.set(layout.projectDirectory.dir("src/main/resources/assets/lang"))
-    resourceBundleBaseName.set("I18N")
-    additionalLanguages.set(listOf("en-Qabs"))
-    outputFile.set(generatedDir.map { it.file("languages.json") })
-}
-
-val createLocaleNamesResourceBundle =
-    tasks.register<CreateLocaleNamesResourceBundle>("createLocaleNamesResourceBundle") {
-        dependsOn(createLanguageList)
-
-        languagesFile.set(createLanguageList.flatMap { it.outputFile })
-        outputDirectory.set(generatedDir.map { it.dir("generated/LocaleNames") })
-    }
 
 // mcmod data
 

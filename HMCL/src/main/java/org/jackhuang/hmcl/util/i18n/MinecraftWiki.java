@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2025 huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,6 @@ package org.jackhuang.hmcl.util.i18n;
 
 import org.jackhuang.hmcl.download.game.GameRemoteVersion;
 import org.jackhuang.hmcl.util.StringUtils;
-import org.jackhuang.hmcl.util.i18n.translator.Translator_lzh;
 import org.jackhuang.hmcl.util.versioning.GameVersionNumber;
 
 import java.util.Locale;
@@ -32,24 +31,6 @@ public final class MinecraftWiki {
     public static String getWikiLink(SupportedLocale locale, GameRemoteVersion version) {
         String wikiVersion = StringUtils.removeSuffix(version.getSelfVersion(), "_unobfuscated");
         var gameVersion = GameVersionNumber.asGameVersion(wikiVersion);
-
-        if (locale.getLocale().getLanguage().equals("lzh")) {
-            String translatedVersion;
-            if (wikiVersion.startsWith("2.0"))
-                translatedVersion = "二點〇";
-            else if (wikiVersion.startsWith("1.0.0-rc2"))
-                translatedVersion = Translator_lzh.translateGameVersion(GameVersionNumber.asGameVersion("1.0.0-rc2"));
-            else
-                translatedVersion = Translator_lzh.translateGameVersion(gameVersion);
-
-            if (translatedVersion.equals(gameVersion.toString()) || gameVersion instanceof GameVersionNumber.Old) {
-                return getWikiLink(SupportedLocale.getLocale(LocaleUtils.LOCALE_ZH_HANT), version);
-            } else if (SNAPSHOT_PATTERN.matcher(wikiVersion).matches()) {
-                return locale.i18n("wiki.version.game.snapshot", translatedVersion);
-            } else {
-                return locale.i18n("wiki.version.game", translatedVersion);
-            }
-        }
 
         String variantSuffix;
         if (LocaleUtils.isChinese(locale.getLocale())) {

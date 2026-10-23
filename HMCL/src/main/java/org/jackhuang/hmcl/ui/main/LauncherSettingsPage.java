@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2021  huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -43,9 +43,6 @@ public class LauncherSettingsPage extends DecoratorAnimatedPage implements Decor
     private final TabHeader.Tab<SettingsPage> settingsTab = new TabHeader.Tab<>("settingsPage");
     private final TabHeader.Tab<PersonalizationPage> personalizationTab = new TabHeader.Tab<>("personalizationPage");
     private final TabHeader.Tab<DownloadSettingsPage> downloadTab = new TabHeader.Tab<>("downloadSettingsPage");
-    private final TabHeader.Tab<HelpPage> helpTab = new TabHeader.Tab<>("helpPage");
-    private final TabHeader.Tab<AboutPage> aboutTab = new TabHeader.Tab<>("aboutPage");
-    private final TabHeader.Tab<FeedbackPage> feedbackTab = new TabHeader.Tab<>("feedbackPage");
     private final TransitionPane transitionPane = new TransitionPane();
 
     public LauncherSettingsPage() {
@@ -54,10 +51,7 @@ public class LauncherSettingsPage extends DecoratorAnimatedPage implements Decor
         settingsTab.setNodeSupplier(SettingsPage::new);
         personalizationTab.setNodeSupplier(PersonalizationPage::new);
         downloadTab.setNodeSupplier(DownloadSettingsPage::new);
-        helpTab.setNodeSupplier(HelpPage::new);
-        feedbackTab.setNodeSupplier(FeedbackPage::new);
-        aboutTab.setNodeSupplier(AboutPage::new);
-        tab = new TabHeader(transitionPane, gameTab, javaManagementTab, settingsTab, personalizationTab, downloadTab, helpTab, feedbackTab, aboutTab);
+        tab = new TabHeader(transitionPane, gameTab, javaManagementTab, settingsTab, personalizationTab, downloadTab);
 
         tab.select(gameTab);
         addEventHandler(Navigator.NavigationEvent.NAVIGATED, event -> gameTab.getNode().loadInstance(HMCLGameInstance.Optional.empty(GameDirectoryManager.getSelectedRepository())));
@@ -68,11 +62,7 @@ public class LauncherSettingsPage extends DecoratorAnimatedPage implements Decor
                 .startCategory(i18n("launcher").toUpperCase(Locale.ROOT))
                 .addNavigationDrawerTab(tab, settingsTab, i18n("settings.launcher.general"), SVG.TUNE)
                 .addNavigationDrawerTab(tab, personalizationTab, i18n("settings.launcher.appearance"), SVG.STYLE, SVG.STYLE_FILL)
-                .addNavigationDrawerTab(tab, downloadTab, i18n("download"), SVG.DOWNLOAD)
-                .startCategory(i18n("help").toUpperCase(Locale.ROOT))
-                .addNavigationDrawerTab(tab, helpTab, i18n("help"), SVG.HELP, SVG.HELP_FILL)
-                .addNavigationDrawerTab(tab, feedbackTab, i18n("contact"), SVG.FEEDBACK, SVG.FEEDBACK_FILL)
-                .addNavigationDrawerTab(tab, aboutTab, i18n("about"), SVG.INFO, SVG.INFO_FILL);
+                .addNavigationDrawerTab(tab, downloadTab, i18n("download"), SVG.DOWNLOAD);
         FXUtils.setLimitWidth(sideBar, 200);
         setLeft(sideBar);
 
@@ -92,10 +82,6 @@ public class LauncherSettingsPage extends DecoratorAnimatedPage implements Decor
     public void showGameSettings(HMCLGameRepository repository) {
         gameTab.getNode().loadInstance(HMCLGameInstance.Optional.empty(repository));
         tab.select(gameTab, false);
-    }
-
-    public void showFeedback() {
-        tab.select(feedbackTab, false);
     }
 
     @Override

@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2020  huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,6 +17,7 @@
  */
 package org.jackhuang.hmcl.util.i18n;
 
+import org.jackhuang.hmcl.Metadata;
 import org.jackhuang.hmcl.addon.AddonLoader;
 import org.jackhuang.hmcl.addon.AddonLoaderType;
 import org.jackhuang.hmcl.addon.mod.ModLoaderType;
@@ -87,10 +88,6 @@ public final class I18n {
 
     public static SupportedLocale getLocale() {
         return locale;
-    }
-
-    public static boolean isUpsideDown() {
-        return LocaleUtils.getScript(locale.getDisplayLocale()).equals("Qabs");
     }
 
     public static boolean isUseChinese() {
@@ -232,7 +229,7 @@ public final class I18n {
         } else if (task instanceof ServerModpackLocalInstallTask) {
             return i18n("install.installing") + ": " + i18n("modpack.type.server");
         } else if (task instanceof HMCLModpackInstallTask) {
-            return i18n("modpack.installing.given", "HMCL");
+            return i18n("modpack.installing.given", Metadata.NAME);
         } else if (task instanceof McbbsModpackExportTask || task instanceof ServerModpackExportTask || task instanceof ModrinthModpackExportTask) {
             return i18n("modpack.export");
         } else if (task instanceof MinecraftInstanceTask) {

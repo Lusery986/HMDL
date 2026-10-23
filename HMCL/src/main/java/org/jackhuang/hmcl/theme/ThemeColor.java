@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2025 huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -41,7 +41,8 @@ import java.util.Objects;
 @JsonSerializable
 public record ThemeColor(@NotNull String name, @NotNull Color color) {
 
-    public static final ThemeColor DEFAULT = new ThemeColor("blue", Color.web("#5C6BC0"));
+    /// The launcher default accent color (deep blue).
+    public static final ThemeColor DEFAULT = new ThemeColor("blue", Color.web("#0D47A1"));
 
     public static final List<ThemeColor> STANDARD_COLORS = List.of(
             DEFAULT,

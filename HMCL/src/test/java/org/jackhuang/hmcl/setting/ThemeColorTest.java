@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2025 huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ public final class ThemeColorTest {
     @Test
     public void testOf() {
         assertEquals(new ThemeColor("#AABBCC", Color.web("#AABBCC")), ThemeColor.of("#AABBCC"));
-        assertEquals(new ThemeColor("blue", Color.web("#5C6BC0")), ThemeColor.of("blue"));
+        assertEquals(new ThemeColor("blue", Color.web("#0D47A1")), ThemeColor.of("blue"));
         assertEquals(new ThemeColor("darker_blue", Color.web("#283593")), ThemeColor.of("darker_blue"));
         assertEquals(new ThemeColor("green", Color.web("#43A047")), ThemeColor.of("green"));
         assertEquals(new ThemeColor("orange", Color.web("#E67E22")), ThemeColor.of("orange"));

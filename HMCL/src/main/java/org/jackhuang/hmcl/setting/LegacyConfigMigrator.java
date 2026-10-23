@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2026 huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -352,7 +352,6 @@ public final class LegacyConfigMigrator {
         JsonObject current = new JsonObject();
         current.add(JsonSchema.PROPERTY_SCHEMA, JsonUtils.GSON.toJsonTree(UserState.CURRENT_SCHEMA, JsonSchema.class));
         copyMember(legacy, current, "agreementVersion");
-        copyMember(legacy, current, "terracottaAgreementVersion");
         copyMember(legacy, current, "platformPromptVersion");
         return Objects.requireNonNull(JsonUtils.GSON.fromJson(current, UserState.class));
     }

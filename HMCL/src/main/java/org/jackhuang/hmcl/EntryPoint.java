@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2020  huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ public final class EntryPoint {
     public static void main(String[] args) {
         System.getProperties().putIfAbsent("java.net.useSystemProxies", "true");
         System.getProperties().putIfAbsent("javafx.autoproxy.disable", "true");
-        System.getProperties().putIfAbsent("http.agent", "HMCL/" + Metadata.VERSION);
+        System.getProperties().putIfAbsent("http.agent", Metadata.NAME + "/" + Metadata.VERSION);
 
         createHMCLDirectories();
         LOG.start(Metadata.HMCL_LOCAL_HOME.resolve("logs"));

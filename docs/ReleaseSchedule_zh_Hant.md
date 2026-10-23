@@ -1,4 +1,4 @@
-# Hello Minecraft! Launcher 發布計劃
+# Hu Mai Diao! Launcher 發布計劃
 
 <!-- #BEGIN LANGUAGE_SWITCHER -->
 [English](ReleaseSchedule.md) | **中文** ([简体](ReleaseSchedule_zh_Hans.md), **繁體**)

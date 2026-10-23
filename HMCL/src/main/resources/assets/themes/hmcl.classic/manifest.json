@@ -13,14 +13,14 @@
     "lzh": "舊觀"
   },
   "description": {
-    "default": "Classic HMCL launcher themes",
-    "es": "Temas clásicos del launcher HMCL",
-    "ja": "HMCL ランチャーのクラシックテーマ",
-    "ru": "Классические темы лаунчера HMCL",
-    "uk": "Класичні теми лаунчера HMCL",
-    "zh-Hans": "HMCL 启动器经典主题",
-    "zh-Hant": "HMCL 啟動器經典主題",
-    "lzh": "HMCL 啟動器之舊觀"
+    "default": "Classic HMDL launcher themes",
+    "es": "Temas clásicos del launcher HMDL",
+    "ja": "HMDL ランチャーのクラシックテーマ",
+    "ru": "Классические темы лаунчера HMDL",
+    "uk": "Класичні теми лаунчера HMDL",
+    "zh-Hans": "HMDL 启动器经典主题",
+    "zh-Hant": "HMDL 啟動器經典主題",
+    "lzh": "HMDL 啟動器之舊觀"
   },
   "authors": [
     {
@@ -44,14 +44,14 @@
         "lzh": "今觀"
       },
       "description": {
-        "default": "HMCL current theme",
-        "es": "Tema actual de HMCL",
-        "ja": "HMCL の現在のテーマ",
-        "ru": "Текущая тема HMCL",
-        "uk": "Поточна тема HMCL",
-        "zh-Hans": "HMCL 当前主题",
-        "zh-Hant": "HMCL 當前主題",
-        "lzh": "HMCL 之今觀"
+        "default": "HMDL current theme",
+        "es": "Tema actual de HMDL",
+        "ja": "HMDL の現在のテーマ",
+        "ru": "Текущая тема HMDL",
+        "uk": "Поточна тема HMDL",
+        "zh-Hans": "HMDL 当前主题",
+        "zh-Hant": "HMDL 當前主題",
+        "lzh": "HMDL 之今觀"
       },
       "color": "#5C6BC0",
       "brightness": "light",
@@ -67,16 +67,16 @@
     },
     {
       "id": "2016-02-25",
-      "name": "HMCL 3.3",
+      "name": "HMDL 3.3",
       "description": {
-        "default": "HMCL 3.3 classic appearance",
-        "es": "Apariencia clásica de HMCL 3.3",
-        "ja": "HMCL 3.3 のクラシックな外観",
-        "ru": "Классический вид HMCL 3.3",
-        "uk": "Класичний вигляд HMCL 3.3",
-        "zh-Hans": "HMCL 3.3 经典外观",
-        "zh-Hant": "HMCL 3.3 經典外觀",
-        "lzh": "HMCL 3.3 之舊觀"
+        "default": "HMDL 3.3 classic appearance",
+        "es": "Apariencia clásica de HMDL 3.3",
+        "ja": "HMDL 3.3 のクラシックな外観",
+        "ru": "Классический вид HMDL 3.3",
+        "uk": "Класичний вигляд HMDL 3.3",
+        "zh-Hans": "HMDL 3.3 经典外观",
+        "zh-Hant": "HMDL 3.3 經典外觀",
+        "lzh": "HMDL 3.3 之舊觀"
       },
       "color": "#5C6BC0",
       "brightness": "light",
@@ -93,17 +93,17 @@
     {
       "id": "2015-06-22",
       "name": {
-        "default": "HMCL 2.3"
+        "default": "HMDL 2.3"
       },
       "description": {
-        "default": "HMCL 2.3 classic appearance",
-        "es": "Apariencia clásica de HMCL 2.3",
-        "ja": "HMCL 2.3 のクラシックな外観",
-        "ru": "Классический вид HMCL 2.3",
-        "uk": "Класичний вигляд HMCL 2.3",
-        "zh-Hans": "HMCL 2.3 经典外观",
-        "zh-Hant": "HMCL 2.3 經典外觀",
-        "lzh": "HMCL 2.3 之舊觀"
+        "default": "HMDL 2.3 classic appearance",
+        "es": "Apariencia clásica de HMDL 2.3",
+        "ja": "HMDL 2.3 のクラシックな外観",
+        "ru": "Классический вид HMDL 2.3",
+        "uk": "Класичний вигляд HMDL 2.3",
+        "zh-Hans": "HMDL 2.3 经典外观",
+        "zh-Hant": "HMDL 2.3 經典外觀",
+        "lzh": "HMDL 2.3 之舊觀"
       },
       "color": "#E67E22",
       "brightness": "light",

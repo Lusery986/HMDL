@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2021  huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -1212,7 +1212,7 @@ public class PersonalizationPage extends StackPane {
                     }
                 }
 
-                vbox.getChildren().add(new Label("Hello Minecraft! Launcher"));
+                vbox.getChildren().add(new Label("Hu Mai Diao! Launcher"));
 
                 fontPane.getContent().add(vbox);
             }

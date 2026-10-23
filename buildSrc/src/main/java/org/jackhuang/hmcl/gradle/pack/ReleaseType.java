@@ -1,5 +1,5 @@
 /*
- * Hello Minecraft! Launcher
+ * Hu Mai Diao! Launcher
  * Copyright (C) 2026 huangyuhui <huanghongxun2008@126.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,9 +23,9 @@ package org.jackhuang.hmcl.gradle.pack;
 /// priority are intentionally centralized here so `CreateDeb` can stay focused
 /// on archive layout instead of duplicating channel-specific branching.
 public enum ReleaseType {
-    STABLE("stable", "hmcl", "HMCL", 100),
-    DEVELOPMENT("beta", "hmcl-beta", "HMCL (Beta)", 200),
-    NIGHTLY("nightly", "hmcl-nightly", "HMCL (Nightly)", 300);
+    STABLE("stable", "hmcl", "HMDL", 100),
+    DEVELOPMENT("beta", "hmcl-beta", "HMDL (Beta)", 200),
+    NIGHTLY("nightly", "hmcl-nightly", "HMDL (Nightly)", 300);
 
     private final String name;
     private final String packageName;
